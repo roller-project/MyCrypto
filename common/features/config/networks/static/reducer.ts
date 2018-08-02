@@ -27,7 +27,8 @@ import {
   RSK_TESTNET,
   GO_DEFAULT,
   EOSC_DEFAULT,
-  ESN_DEFAULT
+  ESN_DEFAULT,
+  ROL_DEFAULT
 } from 'config/dpaths';
 import { makeExplorer } from 'utils/helpers';
 import { StaticNetworksState } from './types';
@@ -513,6 +514,31 @@ export const STATIC_NETWORKS_INITIAL_STATE: StaticNetworksState = {
       min: 1,
       max: 60,
       initial: 20
+    }
+  },
+  ROL: {
+    id: 'ROL',
+    name: 'Roller',
+    unit: 'ROL',
+    chainId: 29021982,
+    isCustom: false,
+    color: '#673ab7',
+    blockExplorer: makeExplorer({
+      name: 'Gander',
+      origin: 'https://www.roller.today'
+    }),
+    tokens: require('config/tokens/rol.json'),
+    contracts: require('config/contracts/rol.json'),
+    dPathFormats: {
+      [SecureWalletName.TREZOR]: ROL_DEFAULT,
+      [SecureWalletName.SAFE_T]: ROL_DEFAULT,
+      [SecureWalletName.LEDGER_NANO_S]: ROL_DEFAULT,
+      [InsecureWalletName.MNEMONIC_PHRASE]: ROL_DEFAULT
+    },
+    gasPriceSettings: {
+      min: 0.1,
+      max: 20,
+      initial: 2
     }
   }
 };
